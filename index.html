@@ -520,6 +520,81 @@
       <div class="p-head"><span>Federal Register</span><span class="chip init" id="chipFedReg">INIT</span></div>
       <div class="panel-body scroll-list" id="fedregBody"><div class="empty-note">ACQUIRING REGISTER…</div></div>
     </div>
+    <div class="panel">
+      <div class="p-head"><span>Congress Tracker</span><span class="chip init" id="chipBills">INIT</span></div>
+      <div class="panel-body scroll-list" id="billsBody"><div class="empty-note">ACQUIRING GOVTRACK…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Floor Votes</span><span class="chip init" id="chipVotes">INIT</span></div>
+      <div class="panel-body scroll-list" id="votesBody"><div class="empty-note">ACQUIRING ROLL CALLS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>UN Wire</span><span class="chip init" id="chipUn">INIT</span></div>
+      <div class="panel-body scroll-list" id="unBody"><div class="empty-note">ACQUIRING UN NEWS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Exchange Status</span><span class="chip ok">LOCAL</span></div>
+      <div class="panel-body" id="xBody"></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Fed Wire</span><span class="chip init" id="chipFed">INIT</span></div>
+      <div class="panel-body scroll-list" id="fedBody"><div class="empty-note">ACQUIRING FEDERAL RESERVE…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>GAO Oversight</span><span class="chip init" id="chipGao">INIT</span></div>
+      <div class="panel-body scroll-list" id="gaoBody"><div class="empty-note">ACQUIRING GAO…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Defense Contracts</span><span class="chip init" id="chipContracts">INIT</span></div>
+      <div class="panel-body scroll-list" id="contractsBody"><div class="empty-note">ACQUIRING CONTRACT AWARDS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Prediction Markets</span><span class="chip init" id="chipPred">INIT</span></div>
+      <div class="panel-body scroll-list" id="predBody"><div class="empty-note">ACQUIRING POLYMARKET…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>PredictIt · US Politics</span><span class="chip init" id="chipPredictit">INIT</span></div>
+      <div class="panel-body scroll-list" id="predictitBody"><div class="empty-note">ACQUIRING PREDICTIT…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>FDA Recalls</span><span class="chip init" id="chipFda">INIT</span></div>
+      <div class="panel-body scroll-list" id="fdaBody"><div class="empty-note">ACQUIRING OPENFDA…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Drug Recalls</span><span class="chip init" id="chipDrugs">INIT</span></div>
+      <div class="panel-body scroll-list" id="drugsBody"><div class="empty-note">ACQUIRING OPENFDA…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Drug Shortages</span><span class="chip init" id="chipShort">INIT</span></div>
+      <div class="panel-body scroll-list" id="shortBody"><div class="empty-note">ACQUIRING SHORTAGE DATA…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Internet Outages · IODA</span><span class="chip init" id="chipIoda">INIT</span></div>
+      <div class="panel-body scroll-list" id="iodaBody"><div class="empty-note">SCANNING BGP / IODA…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Censorship Signals · OONI</span><span class="chip init" id="chipOoni">INIT</span></div>
+      <div class="panel-body scroll-list" id="ooniBody"><div class="empty-note">ACQUIRING OONI PROBES…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Phishing Feed · OpenPhish</span><span class="chip init" id="chipPhish">INIT</span></div>
+      <div class="panel-body scroll-list" id="phishBody"><div class="empty-note">ACQUIRING OPENPHISH…</div></div>
+    </div>
+
   </div>
 
   <!-- CENTER COLUMN -->
@@ -572,20 +647,8 @@
       <div class="panel-body scroll-list" id="wtopBody"><div class="empty-note">ACQUIRING PAGEVIEWS…</div></div>
     </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Congress Tracker</span><span class="chip init" id="chipBills">INIT</span></div>
-      <div class="panel-body scroll-list" id="billsBody"><div class="empty-note">ACQUIRING GOVTRACK…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Floor Votes</span><span class="chip init" id="chipVotes">INIT</span></div>
-      <div class="panel-body scroll-list" id="votesBody"><div class="empty-note">ACQUIRING ROLL CALLS…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>UN Wire</span><span class="chip init" id="chipUn">INIT</span></div>
-      <div class="panel-body scroll-list" id="unBody"><div class="empty-note">ACQUIRING UN NEWS…</div></div>
-    </div>
 
     <div class="panel">
       <div class="p-head"><span>BBC World</span><span class="chip init" id="chipBbc">INIT</span></div>
@@ -756,14 +819,100 @@
       <div class="p-head"><span>National Capital Ops</span><span class="chip init" id="chipNcap">INIT</span></div>
       <div class="panel-body" id="ncapBody"><div class="empty-note">ACQUIRING DC WX / FAA NAS…</div></div>
     </div>
+    <div class="panel">
+      <div class="p-head"><span>Space Weather</span><span class="chip init" id="chipSpace">INIT</span></div>
+      <div class="panel-body"><div class="stat-grid" id="spaceBody"><div class="empty-note">ACQUIRING NOAA / DONKI…</div></div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Asteroid Watch · NeoWs</span><span class="chip init" id="chipNeo">INIT</span></div>
+      <div class="panel-body"><div class="stat-grid" id="neoBody"><div class="empty-note">SCANNING NEAR-EARTH…</div></div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Humans in Space</span><span class="chip init" id="chipAstros">INIT</span></div>
+      <div class="panel-body scroll-list" id="astrosBody"><div class="empty-note">ACQUIRING CREW MANIFEST…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Launch Schedule</span><span class="chip init" id="chipLaunch">INIT</span></div>
+      <div class="panel-body scroll-list" id="launchBody"><div class="empty-note">ACQUIRING LAUNCH MANIFEST…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Recent Launches</span><span class="chip init" id="chipPrevlaunch">INIT</span></div>
+      <div class="panel-body scroll-list" id="prevlaunchBody"><div class="empty-note">ACQUIRING LAUNCH LOG…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>SpaceNews</span><span class="chip init" id="chipSpnews">INIT</span></div>
+      <div class="panel-body scroll-list" id="spnewsBody"><div class="empty-note">ACQUIRING SPACENEWS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>NASASpaceflight</span><span class="chip init" id="chipNsf">INIT</span></div>
+      <div class="panel-body scroll-list" id="nsfBody"><div class="empty-note">ACQUIRING NASASPACEFLIGHT…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>UAP Wire · GDELT</span><span class="chip init" id="chipUapwire">INIT</span></div>
+      <div class="panel-body scroll-list" id="uapwireBody"><div class="empty-note">SCANNING GLOBAL UAP REPORTS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>The Debrief · UAP</span><span class="chip init" id="chipDebrief">INIT</span></div>
+      <div class="panel-body scroll-list" id="debriefBody"><div class="empty-note">ACQUIRING THE DEBRIEF…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>The Black Vault · FOIA</span><span class="chip init" id="chipVault">INIT</span></div>
+      <div class="panel-body scroll-list" id="vaultBody"><div class="empty-note">ACQUIRING BLACK VAULT…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Open Minds · UFO News</span><span class="chip init" id="chipOminds">INIT</span></div>
+      <div class="panel-body scroll-list" id="omindsBody"><div class="empty-note">ACQUIRING OPEN MINDS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>The UFO Chronicles</span><span class="chip init" id="chipUfoc">INIT</span></div>
+      <div class="panel-body scroll-list" id="ufocBody"><div class="empty-note">ACQUIRING UFO CHRONICLES…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Fireball Watch · JPL</span><span class="chip init" id="chipFireball">INIT</span></div>
+      <div class="panel-body" id="fireballBody"><div class="empty-note">SCANNING ATMOSPHERIC ENTRIES…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>NHI Wire · GDELT</span><span class="chip init" id="chipNhiwire">INIT</span></div>
+      <div class="panel-body scroll-list" id="nhiwireBody"><div class="empty-note">SCANNING NON-HUMAN INTELLIGENCE REPORTS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Centauri Dreams · SETI</span><span class="chip init" id="chipCdreams">INIT</span></div>
+      <div class="panel-body scroll-list" id="cdreamsBody"><div class="empty-note">ACQUIRING CENTAURI DREAMS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Universe Today</span><span class="chip init" id="chipUtoday">INIT</span></div>
+      <div class="panel-body scroll-list" id="utodayBody"><div class="empty-note">ACQUIRING UNIVERSE TODAY…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Phys.org · Astrobiology</span><span class="chip init" id="chipPhysab">INIT</span></div>
+      <div class="panel-body scroll-list" id="physabBody"><div class="empty-note">ACQUIRING ASTROBIOLOGY…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>arXiv · Technosignatures</span><span class="chip init" id="chipTechno">INIT</span></div>
+      <div class="panel-body scroll-list" id="technoBody"><div class="empty-note">ACQUIRING TECHNOSIGNATURE PAPERS…</div></div>
+    </div>
+
   </div>
 
   <!-- RIGHT COLUMN -->
   <div class="col col-right">
-    <div class="panel">
-      <div class="p-head"><span>Exchange Status</span><span class="chip ok">LOCAL</span></div>
-      <div class="panel-body" id="xBody"></div>
-    </div>
 
     <div class="panel">
       <div class="p-head"><span>Mil Air Track · ADS-B</span><span class="chip init" id="chipMil">INIT</span></div>
@@ -795,25 +944,13 @@
       <div class="panel-body scroll-list" id="centcomBody"><div class="empty-note">ACQUIRING CENTCOM…</div></div>
     </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Defense Contracts</span><span class="chip init" id="chipContracts">INIT</span></div>
-      <div class="panel-body scroll-list" id="contractsBody"><div class="empty-note">ACQUIRING CONTRACT AWARDS…</div></div>
-    </div>
 
     <div class="panel">
       <div class="p-head"><span>DVIDS Wire</span><span class="chip init" id="chipDvids">INIT</span></div>
       <div class="panel-body scroll-list" id="dvidsBody"><div class="empty-note">ACQUIRING DVIDS…</div></div>
     </div>
 
-    <div class="panel">
-      <div class="p-head"><span>GAO Oversight</span><span class="chip init" id="chipGao">INIT</span></div>
-      <div class="panel-body scroll-list" id="gaoBody"><div class="empty-note">ACQUIRING GAO…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Fed Wire</span><span class="chip init" id="chipFed">INIT</span></div>
-      <div class="panel-body scroll-list" id="fedBody"><div class="empty-note">ACQUIRING FEDERAL RESERVE…</div></div>
-    </div>
 
     <div class="panel">
       <div class="p-head"><span>CSIS Analysis</span><span class="chip init" id="chipCsis">INIT</span></div>
@@ -950,15 +1087,7 @@
       <div class="panel-body scroll-list" id="conflictBody"><div class="empty-note">SCANNING GDELT GKG…</div></div>
     </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Prediction Markets</span><span class="chip init" id="chipPred">INIT</span></div>
-      <div class="panel-body scroll-list" id="predBody"><div class="empty-note">ACQUIRING POLYMARKET…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>PredictIt · US Politics</span><span class="chip init" id="chipPredictit">INIT</span></div>
-      <div class="panel-body scroll-list" id="predictitBody"><div class="empty-note">ACQUIRING PREDICTIT…</div></div>
-    </div>
 
     <div class="panel">
       <div class="p-head"><span>CISA KEV · Exploited Vulns</span><span class="chip init" id="chipKev">INIT</span></div>
@@ -1040,35 +1169,11 @@
       <div class="panel-body scroll-list" id="hfblogBody"><div class="empty-note">ACQUIRING HF BLOG…</div></div>
     </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Internet Outages · IODA</span><span class="chip init" id="chipIoda">INIT</span></div>
-      <div class="panel-body scroll-list" id="iodaBody"><div class="empty-note">SCANNING BGP / IODA…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Censorship Signals · OONI</span><span class="chip init" id="chipOoni">INIT</span></div>
-      <div class="panel-body scroll-list" id="ooniBody"><div class="empty-note">ACQUIRING OONI PROBES…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Phishing Feed · OpenPhish</span><span class="chip init" id="chipPhish">INIT</span></div>
-      <div class="panel-body scroll-list" id="phishBody"><div class="empty-note">ACQUIRING OPENPHISH…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>FDA Recalls</span><span class="chip init" id="chipFda">INIT</span></div>
-      <div class="panel-body scroll-list" id="fdaBody"><div class="empty-note">ACQUIRING OPENFDA…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Drug Recalls</span><span class="chip init" id="chipDrugs">INIT</span></div>
-      <div class="panel-body scroll-list" id="drugsBody"><div class="empty-note">ACQUIRING OPENFDA…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Drug Shortages</span><span class="chip init" id="chipShort">INIT</span></div>
-      <div class="panel-body scroll-list" id="shortBody"><div class="empty-note">ACQUIRING SHORTAGE DATA…</div></div>
-    </div>
 
     <div class="panel">
       <div class="p-head"><span>Seismic Watch · 24H</span><span class="chip init" id="chipQuake">INIT</span></div>
@@ -1085,95 +1190,23 @@
       <div class="panel-body scroll-list" id="gdacsBody"><div class="empty-note">ACQUIRING GDACS…</div></div>
     </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Space Weather</span><span class="chip init" id="chipSpace">INIT</span></div>
-      <div class="panel-body"><div class="stat-grid" id="spaceBody"><div class="empty-note">ACQUIRING NOAA / DONKI…</div></div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Asteroid Watch · NeoWs</span><span class="chip init" id="chipNeo">INIT</span></div>
-      <div class="panel-body"><div class="stat-grid" id="neoBody"><div class="empty-note">SCANNING NEAR-EARTH…</div></div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Humans in Space</span><span class="chip init" id="chipAstros">INIT</span></div>
-      <div class="panel-body scroll-list" id="astrosBody"><div class="empty-note">ACQUIRING CREW MANIFEST…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Launch Schedule</span><span class="chip init" id="chipLaunch">INIT</span></div>
-      <div class="panel-body scroll-list" id="launchBody"><div class="empty-note">ACQUIRING LAUNCH MANIFEST…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Recent Launches</span><span class="chip init" id="chipPrevlaunch">INIT</span></div>
-      <div class="panel-body scroll-list" id="prevlaunchBody"><div class="empty-note">ACQUIRING LAUNCH LOG…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>SpaceNews</span><span class="chip init" id="chipSpnews">INIT</span></div>
-      <div class="panel-body scroll-list" id="spnewsBody"><div class="empty-note">ACQUIRING SPACENEWS…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>NASASpaceflight</span><span class="chip init" id="chipNsf">INIT</span></div>
-      <div class="panel-body scroll-list" id="nsfBody"><div class="empty-note">ACQUIRING NASASPACEFLIGHT…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>UAP Wire · GDELT</span><span class="chip init" id="chipUapwire">INIT</span></div>
-      <div class="panel-body scroll-list" id="uapwireBody"><div class="empty-note">SCANNING GLOBAL UAP REPORTS…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>The Debrief · UAP</span><span class="chip init" id="chipDebrief">INIT</span></div>
-      <div class="panel-body scroll-list" id="debriefBody"><div class="empty-note">ACQUIRING THE DEBRIEF…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>The Black Vault · FOIA</span><span class="chip init" id="chipVault">INIT</span></div>
-      <div class="panel-body scroll-list" id="vaultBody"><div class="empty-note">ACQUIRING BLACK VAULT…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Open Minds · UFO News</span><span class="chip init" id="chipOminds">INIT</span></div>
-      <div class="panel-body scroll-list" id="omindsBody"><div class="empty-note">ACQUIRING OPEN MINDS…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>The UFO Chronicles</span><span class="chip init" id="chipUfoc">INIT</span></div>
-      <div class="panel-body scroll-list" id="ufocBody"><div class="empty-note">ACQUIRING UFO CHRONICLES…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Fireball Watch · JPL</span><span class="chip init" id="chipFireball">INIT</span></div>
-      <div class="panel-body" id="fireballBody"><div class="empty-note">SCANNING ATMOSPHERIC ENTRIES…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>NHI Wire · GDELT</span><span class="chip init" id="chipNhiwire">INIT</span></div>
-      <div class="panel-body scroll-list" id="nhiwireBody"><div class="empty-note">SCANNING NON-HUMAN INTELLIGENCE REPORTS…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Centauri Dreams · SETI</span><span class="chip init" id="chipCdreams">INIT</span></div>
-      <div class="panel-body scroll-list" id="cdreamsBody"><div class="empty-note">ACQUIRING CENTAURI DREAMS…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Universe Today</span><span class="chip init" id="chipUtoday">INIT</span></div>
-      <div class="panel-body scroll-list" id="utodayBody"><div class="empty-note">ACQUIRING UNIVERSE TODAY…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>Phys.org · Astrobiology</span><span class="chip init" id="chipPhysab">INIT</span></div>
-      <div class="panel-body scroll-list" id="physabBody"><div class="empty-note">ACQUIRING ASTROBIOLOGY…</div></div>
-    </div>
 
-    <div class="panel">
-      <div class="p-head"><span>arXiv · Technosignatures</span><span class="chip init" id="chipTechno">INIT</span></div>
-      <div class="panel-body scroll-list" id="technoBody"><div class="empty-note">ACQUIRING TECHNOSIGNATURE PAPERS…</div></div>
-    </div>
 
     <div class="panel">
       <div class="p-head"><span>System Log</span><span class="chip ok">REC</span></div>
