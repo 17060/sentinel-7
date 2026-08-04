@@ -595,6 +595,21 @@
       <div class="panel-body scroll-list" id="phishBody"><div class="empty-note">ACQUIRING OPENPHISH…</div></div>
     </div>
 
+    <div class="panel">
+      <div class="p-head"><span>Energy &amp; Commodities</span><span class="chip init" id="chipEnergy">INIT</span></div>
+      <div class="panel-body" id="energyBody"><div class="empty-note">ACQUIRING ENERGY MARKETS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>AI &amp; Tech Megacaps</span><span class="chip init" id="chipMegacap">INIT</span></div>
+      <div class="panel-body" id="megacapBody"><div class="empty-note">ACQUIRING MEGACAPS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Fed Speeches</span><span class="chip init" id="chipFedsp">INIT</span></div>
+      <div class="panel-body scroll-list" id="fedspBody"><div class="empty-note">ACQUIRING FED SPEECHES…</div></div>
+    </div>
+
   </div>
 
   <!-- CENTER COLUMN -->
@@ -909,6 +924,16 @@
       <div class="panel-body scroll-list" id="technoBody"><div class="empty-note">ACQUIRING TECHNOSIGNATURE PAPERS…</div></div>
     </div>
 
+    <div class="panel">
+      <div class="p-head"><span>Arctic Sea Ice · NSIDC</span><span class="chip init" id="chipSeaice">INIT</span></div>
+      <div class="panel-body scroll-list" id="seaiceBody"><div class="empty-note">ACQUIRING SEA ICE DATA…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>HF Propagation · Bands</span><span class="chip init" id="chipHfband">INIT</span></div>
+      <div class="panel-body" id="hfbandBody"><div class="empty-note">ACQUIRING IONOSPHERE…</div></div>
+    </div>
+
   </div>
 
   <!-- RIGHT COLUMN -->
@@ -953,8 +978,8 @@
 
 
     <div class="panel">
-      <div class="p-head"><span>CSIS Analysis</span><span class="chip init" id="chipCsis">INIT</span></div>
-      <div class="panel-body scroll-list" id="csisBody"><div class="empty-note">ACQUIRING CSIS…</div></div>
+      <div class="p-head"><span>Irregular Warfare Init</span><span class="chip init" id="chipIwi">INIT</span></div>
+      <div class="panel-body scroll-list" id="iwiBody"><div class="empty-note">ACQUIRING IWI…</div></div>
     </div>
 
     <div class="panel">
@@ -978,8 +1003,8 @@
     </div>
 
     <div class="panel">
-      <div class="p-head"><span>FAS · Nuclear Notebook</span><span class="chip init" id="chipFas">INIT</span></div>
-      <div class="panel-body scroll-list" id="fasBody"><div class="empty-note">ACQUIRING FAS…</div></div>
+      <div class="p-head"><span>UCS · Nuclear Policy</span><span class="chip init" id="chipUcs">INIT</span></div>
+      <div class="panel-body scroll-list" id="ucsBody"><div class="empty-note">ACQUIRING UCS…</div></div>
     </div>
 
     <div class="panel">
@@ -1209,6 +1234,26 @@
 
 
     <div class="panel">
+      <div class="p-head"><span>Arms Control Assoc</span><span class="chip init" id="chipArms">INIT</span></div>
+      <div class="panel-body scroll-list" id="armsBody"><div class="empty-note">ACQUIRING ARMS CONTROL…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Foreign Policy</span><span class="chip init" id="chipFp">INIT</span></div>
+      <div class="panel-body scroll-list" id="fpBody"><div class="empty-note">ACQUIRING FOREIGN POLICY…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Atlantic Council</span><span class="chip init" id="chipAcfp">INIT</span></div>
+      <div class="panel-body scroll-list" id="acfpBody"><div class="empty-note">ACQUIRING ATLANTIC COUNCIL…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Defense News</span><span class="chip init" id="chipDnews">INIT</span></div>
+      <div class="panel-body scroll-list" id="dnewsBody"><div class="empty-note">ACQUIRING DEFENSE NEWS…</div></div>
+    </div>
+
+    <div class="panel">
       <div class="p-head"><span>System Log</span><span class="chip ok">REC</span></div>
       <div class="terminal" id="sysLog"></div>
     </div>
@@ -1379,11 +1424,11 @@ const S = {
   fema: [], siweekly: [], dvids: [], gao: [], fda: [], solar: false,
   metals: [], pools: [], onchain: null, ai: [], ccats: [], funding: [],
   protocols: [], fees: [], dexs: [], bbc: [], alj: [], aqi: [], kpfc: [],
-  nasanews: [], spc: [], squawk: [], fed: [], csis: [], wot: [], bd: [],
+  nasanews: [], spc: [], squawk: [], fed: [], iwi: [], wot: [], bd: [],
   bleep: [], thn: [], drugs: [], gdacs: [], prevlaunch: [], spnews: [],
   meme: [], pvenues: [], stables: [], options: [], ln: null, predictit: [],
   sea: [], scycle: null, npr: [], dw: [], f24: [], sfn: [], tass: [], meduza: [],
-  night: [], ioda: [], ooni: [], phish: [], short: [], fas: [], n38: [],
+  night: [], ioda: [], ooni: [], phish: [], short: [], ucs: [], n38: [],
   bcat: [], twz: [], done: [], sans: [],
   effr: [], edgar: [], breadth: null, faad: [], spacecom: [], esa: [],
   ukmod: [], usni: [], naval: [], mwi: [], c4isr: [], mtimes: [], task: [],
@@ -1393,7 +1438,8 @@ const S = {
   dwire: [], dronexl: [], dlfe: [], suas: [], uasv: [], dwuk: [], oryx: [],
   lwj: [], cset: [], swj: [], uapwire: [], debrief: [], vault: [], ominds: [],
   ufoc: [], fireball: [], nhiwire: [], cdreams: [], utoday: [], physab: [],
-  techno: [],
+  techno: [], energy: [], megacap: [], fedsp: [], seaice: [], hfband: null,
+  arms: [], fp: [], acfp: [], dnews: [],
   neo: null, astros: null, ncap: { wx: [], faa: [] },
   space: { kp: null, kpTime: null, flux: null, flares: [], gst: null, alert: null },
   news: { conflict: [], politics: [], economy: [], cyber: [], space: [] },
@@ -1421,11 +1467,11 @@ function setFeed(id, state, note) {
     chip.textContent = note || state.toUpperCase();
   }
   const groups = {
-    fdFin: ['chipMarkets', 'chipCrypto', 'chipFx', 'chipMetals', 'chipFng', 'chipFngTrend', 'chipCglobal', 'chipMovers', 'chipSectors', 'chipYcurve', 'chipTrend', 'chipTvl', 'chipExchvol', 'chipChains', 'chipDefig', 'chipMining', 'chipPools', 'chipOnchain', 'chipLn', 'chipAi', 'chipCcats', 'chipFunding', 'chipProtocols', 'chipFees', 'chipDexs', 'chipMeme', 'chipPvenues', 'chipStables', 'chipOptions', 'chipPred', 'chipPredictit', 'chipEffr', 'chipEdgar', 'chipBreadth'],
-    fdGeo: ['chipConflict', 'chipMil', 'chipDcair', 'chipSquawk', 'chipNight', 'chipCentcom', 'chipContracts', 'chipDvids', 'chipCsis', 'chipWot', 'chipBd', 'chipDone', 'chipTwz', 'chipFas', 'chipN38', 'chipBcat', 'chipUkmod', 'chipUsni', 'chipNaval', 'chipMwi', 'chipC4isr', 'chipMtimes', 'chipTask', 'chipDscoop', 'chipDwire', 'chipDronexl', 'chipDlfe', 'chipSuas', 'chipUasv', 'chipDwuk', 'chipOryx', 'chipLwj', 'chipSwj'],
+    fdFin: ['chipMarkets', 'chipCrypto', 'chipFx', 'chipMetals', 'chipFng', 'chipFngTrend', 'chipCglobal', 'chipMovers', 'chipSectors', 'chipYcurve', 'chipTrend', 'chipTvl', 'chipExchvol', 'chipChains', 'chipDefig', 'chipMining', 'chipPools', 'chipOnchain', 'chipLn', 'chipAi', 'chipCcats', 'chipFunding', 'chipProtocols', 'chipFees', 'chipDexs', 'chipMeme', 'chipPvenues', 'chipStables', 'chipOptions', 'chipPred', 'chipPredictit', 'chipEffr', 'chipEdgar', 'chipBreadth', 'chipEnergy', 'chipMegacap', 'chipFedsp'],
+    fdGeo: ['chipConflict', 'chipMil', 'chipDcair', 'chipSquawk', 'chipNight', 'chipCentcom', 'chipContracts', 'chipDvids', 'chipIwi', 'chipWot', 'chipBd', 'chipDone', 'chipTwz', 'chipUcs', 'chipN38', 'chipBcat', 'chipUkmod', 'chipUsni', 'chipNaval', 'chipMwi', 'chipC4isr', 'chipMtimes', 'chipTask', 'chipDscoop', 'chipDwire', 'chipDronexl', 'chipDlfe', 'chipSuas', 'chipUasv', 'chipDwuk', 'chipOryx', 'chipLwj', 'chipSwj', 'chipArms', 'chipFp', 'chipAcfp', 'chipDnews'],
     fdNews: ['chipNews', 'chipWiki', 'chipDod', 'chipWtop', 'chipUn', 'chipIaea', 'chipBbc', 'chipAlj', 'chipNpr', 'chipDw', 'chipF24', 'chipTass', 'chipMeduza'],
-    fdSec: ['chipQuake', 'chipCrisis', 'chipGdacs', 'chipKev', 'chipVolc', 'chipTsu', 'chipCisa', 'chipC2', 'chipTheater', 'chipAqi', 'chipSea', 'chipStorms', 'chipSpc', 'chipNvd', 'chipHacks', 'chipBleep', 'chipThn', 'chipSans', 'chipIoda', 'chipOoni', 'chipPhish', 'chipFema', 'chipSiweekly', 'chipFaad', 'chipCscoop', 'chipSecweek', 'chipDarkread'],
-    fdOrb: ['chipSpace', 'chipLaunch', 'chipPrevlaunch', 'chipSpnews', 'chipNeo', 'chipAstros', 'chipApod', 'chipEvents', 'chipSolar', 'chipKpfc', 'chipScycle', 'chipNasanews', 'chipSfn', 'chipSpacecom', 'chipEsa', 'chipNsf', 'chipUapwire', 'chipDebrief', 'chipVault', 'chipOminds', 'chipUfoc', 'chipFireball', 'chipNhiwire', 'chipCdreams', 'chipUtoday', 'chipPhysab', 'chipTechno'],
+    fdSec: ['chipQuake', 'chipCrisis', 'chipGdacs', 'chipKev', 'chipVolc', 'chipTsu', 'chipCisa', 'chipC2', 'chipTheater', 'chipAqi', 'chipSea', 'chipStorms', 'chipSpc', 'chipNvd', 'chipHacks', 'chipBleep', 'chipThn', 'chipSans', 'chipIoda', 'chipOoni', 'chipPhish', 'chipFema', 'chipSiweekly', 'chipFaad', 'chipCscoop', 'chipSecweek', 'chipDarkread', 'chipSeaice'],
+    fdOrb: ['chipSpace', 'chipLaunch', 'chipPrevlaunch', 'chipSpnews', 'chipNeo', 'chipAstros', 'chipApod', 'chipEvents', 'chipSolar', 'chipKpfc', 'chipScycle', 'chipNasanews', 'chipSfn', 'chipSpacecom', 'chipEsa', 'chipNsf', 'chipUapwire', 'chipDebrief', 'chipVault', 'chipOminds', 'chipUfoc', 'chipFireball', 'chipNhiwire', 'chipCdreams', 'chipUtoday', 'chipPhysab', 'chipTechno', 'chipHfband'],
     fdGov: ['chipDebt', 'chipTga', 'chipInterest', 'chipFedReg', 'chipNcap', 'chipAuctions', 'chipBills', 'chipVotes', 'chipGao', 'chipFda', 'chipDrugs', 'chipShort', 'chipFed'],
     fdAi: ['chipOrouter', 'chipHfm', 'chipHfd', 'chipHnai', 'chipArsai', 'chipVergeai', 'chipMitai', 'chipDecoder', 'chipTcai', 'chipOpenai', 'chipDmind', 'chipArxiv', 'chipImportai', 'chipHfblog', 'chipAi', 'chipChat', 'chipCset'],
   };
@@ -1680,6 +1726,93 @@ function renderMarkets() {
     drawSpark(c, m.spark, m.sym === '^VIX' ? '#ffb000' : undefined);
   });
 }
+
+/* ============================== generic yahoo quote panel ============================== */
+async function loadYahooPanel(key, syms, bodyId, chipId, label) {
+  const results = [];
+  const queue = [...syms];
+  async function worker() {
+    while (queue.length) {
+      const it = queue.shift();
+      try { results.push(await fetchYahooOne(it.s)); }
+      catch (e) { results.push({ sym: it.s, dead: true }); }
+    }
+  }
+  await Promise.all([worker(), worker(), worker()]);
+  const order = new Map(syms.map((y, i) => [y.s, i]));
+  results.sort((a, b) => order.get(a.sym) - order.get(b.sym));
+  const alive = results.filter(r => !r.dead);
+  if (!alive.length) {
+    setFeed(chipId, S[key].length ? 'stale' : 'off', S[key].length ? 'STALE' : 'OFFLINE');
+    log(label + ' FEED DOWN', 'err');
+    return;
+  }
+  S[key] = results;
+  const nameOf = Object.fromEntries(syms.map(y => [y.s, y.n]));
+  $(bodyId).innerHTML = results.map(m => {
+    if (m.dead) return `<div class="lrow"><span class="badge red">${esc(nameOf[m.sym])}</span><div class="grow flat">NO DATA</div></div>`;
+    const cls = m.chg == null ? 'flat' : m.chg >= 0 ? 'up' : 'dn';
+    return `<div class="lrow">
+      <span class="badge cyan">${esc(nameOf[m.sym])}</span>
+      <div class="grow">${fmtPrice(m.price)}</div>
+      <span class="sub ${cls}">${fmtPct(m.chg)}</span>
+    </div>`;
+  }).join('');
+  const dead = results.length - alive.length;
+  setFeed(chipId, dead ? 'stale' : 'ok', dead ? `DEGRADED ${alive.length}/${results.length}` : 'LIVE');
+  log(`${label} SYNC: ${alive.length} instruments${dead ? ' (' + dead + ' dropped)' : ''}`, dead ? 'warn' : 'ok');
+}
+const ENERGY_SYMS = [
+  { s: 'BZ=F', n: 'BRENT' }, { s: 'NG=F', n: 'NATGAS' }, { s: 'HG=F', n: 'COPPER' },
+  { s: 'ZW=F', n: 'WHEAT' }, { s: 'ZC=F', n: 'CORN' }, { s: 'ZS=F', n: 'SOYBEAN' },
+  { s: 'SB=F', n: 'SUGAR' }, { s: 'KC=F', n: 'COFFEE' },
+];
+const MEGACAP_SYMS = [
+  { s: 'NVDA', n: 'NVDA' }, { s: 'MSFT', n: 'MSFT' }, { s: 'AAPL', n: 'AAPL' },
+  { s: 'GOOGL', n: 'GOOGL' }, { s: 'AMZN', n: 'AMZN' }, { s: 'META', n: 'META' },
+  { s: 'TSLA', n: 'TSLA' }, { s: 'PLTR', n: 'PLTR' },
+];
+const loadEnergy = () => loadYahooPanel('energy', ENERGY_SYMS, 'energyBody', 'chipEnergy', 'ENERGY');
+const loadMegacap = () => loadYahooPanel('megacap', MEGACAP_SYMS, 'megacapBody', 'chipMegacap', 'MEGACAP');
+
+/* ============================== HF propagation (N0NBH/hamqsl) ============================== */
+async function loadHfband() {
+  try {
+    const txt = await fetchProxiedText('https://www.hamqsl.com/solarxml.php', 20000);
+    const doc = parseXml(txt);
+    const t = tag => (doc.querySelector(tag) || {}).textContent?.trim() || '';
+    const bands = [...doc.querySelectorAll('band')].map(b => ({
+      name: b.getAttribute('name'), time: b.getAttribute('time'), cond: b.textContent.trim(),
+    }));
+    if (!bands.length) throw new Error('empty');
+    S.hfband = { sfi: t('solarflux'), a: t('aindex'), k: t('kindex'), ssn: t('sunspots'),
+      xray: t('xray'), wind: t('solarwind'), geomag: t('geomagfield'), noise: t('signalnoise'), bands };
+    const condCls = c => c === 'Good' ? 'green' : c === 'Fair' ? 'amber' : 'red';
+    $('hfbandBody').innerHTML = `
+      <div class="stat-row"><span class="k">Solar Flux / SSN</span><span class="v">${esc(S.hfband.sfi)} / ${esc(S.hfband.ssn)}</span></div>
+      <div class="stat-row"><span class="k">A / K Index</span><span class="v">${esc(S.hfband.a)} / ${esc(S.hfband.k)}</span></div>
+      <div class="stat-row"><span class="k">X-Ray / Solar Wind</span><span class="v">${esc(S.hfband.xray)} / ${esc(S.hfband.wind)} km/s</span></div>
+      <div class="stat-row"><span class="k">Geomag / Noise</span><span class="v">${esc(S.hfband.geomag)} / ${esc(S.hfband.noise)}</span></div>
+      ${bands.map(b => `<div class="lrow">
+        <span class="badge ${condCls(b.cond)}">${esc(b.cond.toUpperCase())}</span>
+        <div class="grow">${esc(b.name)}</div>
+        <span class="sub">${esc(b.time.toUpperCase())}</span>
+      </div>`).join('')}`;
+    setFeed('chipHfband', 'ok', 'LIVE');
+    log(`HF PROPAGATION SYNC: SFI ${S.hfband.sfi} · K ${S.hfband.k} · ${bands.length} band reports`, 'ok');
+  } catch (e) {
+    setFeed('chipHfband', S.hfband ? 'stale' : 'off', S.hfband ? 'STALE' : 'OFFLINE');
+    log('HF PROPAGATION FAULT: ' + e.message, 'err');
+  }
+}
+
+/* ============================== strategy & policy desks ============================== */
+const loadFedsp = () => loadRssInto('fedsp', 'https://www.federalreserve.gov/feeds/speeches.xml', 'fedspBody', 'chipFedsp', 'FED SPEECHES');
+const loadSeaice = () => loadRssInto('seaice', 'https://nsidc.org/arcticseaicenews/feed/', 'seaiceBody', 'chipSeaice', 'NSIDC SEA ICE');
+const loadArms = () => loadRssInto('arms', 'https://www.armscontrol.org/rss.xml', 'armsBody', 'chipArms', 'ARMS CONTROL');
+const loadFp = () => loadRssInto('fp', 'https://foreignpolicy.com/feed/', 'fpBody', 'chipFp', 'FOREIGN POLICY');
+const loadAcfp = () => loadRssInto('acfp', 'https://www.atlanticcouncil.org/feed/', 'acfpBody', 'chipAcfp', 'ATLANTIC COUNCIL');
+const loadDnews = () => loadRssInto('dnews', 'https://www.defensenews.com/arc/outboundfeeds/rss/?outputType=xml', 'dnewsBody', 'chipDnews', 'DEFENSE NEWS');
 
 /* ============================== crypto (CoinGecko) ============================== */
 const CG_IDS = ['bitcoin', 'ethereum', 'solana', 'ripple', 'binancecoin', 'dogecoin', 'cardano', 'tron'];
@@ -2835,7 +2968,10 @@ function renderDcAir() {
 /* ============================== CENTCOM + IAEA wires (RSS via proxy) ============================== */
 async function loadRssInto(key, target, bodyId, chipId, label) {
   try {
-    const xml = await fetchProxiedText(target, 20000);
+    let xml = await fetchProxiedText(target, 20000);
+    // strip anything after the document element closes (e.g. Cloudflare beacon injection)
+    const closeIdx = Math.max(xml.lastIndexOf('</rss>'), xml.lastIndexOf('</feed>'), xml.lastIndexOf('</rdf:RDF>'));
+    if (closeIdx > 0) xml = xml.slice(0, xml.indexOf('>', closeIdx) + 1);
     const doc = parseXml(xml);
     let items = [...doc.querySelectorAll('item')].map(it => {
       const dateEl = it.querySelector('pubDate') || it.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', 'date')[0] || it.getElementsByTagName('dc:date')[0];
@@ -2856,7 +2992,7 @@ async function loadRssInto(key, target, bodyId, chipId, label) {
         };
       });
     }
-    S[key] = items.slice(0, 6).filter(a => a.title && a.url);
+    S[key] = items.filter(a => a.title && a.url).sort((a, b) => b.ts - a.ts).slice(0, 6);
     if (!S[key].length) throw new Error('no items');
     $(bodyId).innerHTML = S[key].map(a => `
       <div class="lrow">
@@ -3542,11 +3678,11 @@ const loadFees = () => loadLlamaOverview('fees', 'fees', 'feesBody', 'chipFees',
 const loadDexs = () => loadLlamaOverview('dexs', 'dexs', 'dexsBody', 'chipDexs', 'DEX VOLUME');
 
 /* ============================== RSS wires: press & analysis ============================== */
-const loadBbc = () => loadRssInto('bbc', 'http://feeds.bbci.co.uk/news/world/rss.xml', 'bbcBody', 'chipBbc', 'BBC WORLD');
+const loadBbc = () => loadRssInto('bbc', 'https://feeds.bbci.co.uk/news/world/rss.xml', 'bbcBody', 'chipBbc', 'BBC WORLD');
 const loadAlj = () => loadRssInto('alj', 'https://www.aljazeera.com/xml/rss/all.xml', 'aljBody', 'chipAlj', 'AL JAZEERA');
 const loadNasanews = () => loadRssInto('nasanews', 'https://www.nasa.gov/rss/dyn/breaking_news.rss', 'nasanewsBody', 'chipNasanews', 'NASA WIRE');
 const loadFed = () => loadRssInto('fed', 'https://www.federalreserve.gov/feeds/press_all.xml', 'fedBody', 'chipFed', 'FED WIRE');
-const loadCsis = () => loadRssInto('csis', 'https://www.csis.org/rss.xml', 'csisBody', 'chipCsis', 'CSIS');
+const loadIwi = () => loadRssInto('iwi', 'https://irregularwarfare.org/feed/', 'iwiBody', 'chipIwi', 'IWI');
 const loadWot = () => loadRssInto('wot', 'https://warontherocks.com/feed/', 'wotBody', 'chipWot', 'WOTR');
 const loadBd = () => loadRssInto('bd', 'https://breakingdefense.com/feed/', 'bdBody', 'chipBd', 'BREAKING DEFENSE');
 const loadBleep = () => loadRssInto('bleep', 'https://www.bleepingcomputer.com/feed/', 'bleepBody', 'chipBleep', 'BLEEPINGCOMPUTER');
@@ -3917,7 +4053,7 @@ const loadTass = () => loadRssInto('tass', 'https://tass.com/rss/v2.xml', 'tassB
 const loadMeduza = () => loadRssInto('meduza', 'https://meduza.io/rss/en/all', 'meduzaBody', 'chipMeduza', 'MEDUZA');
 
 /* ============================== analysis wires ============================== */
-const loadFas = () => loadRssInto('fas', 'https://fas.org/feed/', 'fasBody', 'chipFas', 'FAS');
+const loadUcs = () => loadRssInto('ucs', 'https://blog.ucsusa.org/feed', 'ucsBody', 'chipUcs', 'UCS');
 const loadN38 = () => loadRssInto('n38', 'https://www.38north.org/feed/', 'n38Body', 'chipN38', '38 NORTH');
 const loadBcat = () => loadRssInto('bcat', 'https://www.bellingcat.com/feed/', 'bcatBody', 'chipBcat', 'BELLINGCAT');
 const loadTwz = () => loadRssInto('twz', 'https://www.twz.com/rss', 'twzBody', 'chipTwz', 'TWZ');
@@ -4239,7 +4375,7 @@ const loadDecoder = () => loadRssInto('decoder', 'https://the-decoder.com/feed/'
 const loadTcai = () => loadRssInto('tcai', 'https://techcrunch.com/category/artificial-intelligence/feed/', 'tcaiBody', 'chipTcai', 'TECHCRUNCH AI');
 const loadOpenai = () => loadRssInto('openai', 'https://openai.com/blog/rss.xml', 'openaiBody', 'chipOpenai', 'OPENAI');
 const loadDmind = () => loadRssInto('dmind', 'https://deepmind.google/blog/rss.xml', 'dmindBody', 'chipDmind', 'DEEPMIND');
-const loadArxiv = () => loadRssInto('arxiv', 'http://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=6', 'arxivBody', 'chipArxiv', 'ARXIV CS.LG');
+const loadArxiv = () => loadRssInto('arxiv', 'https://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=6', 'arxivBody', 'chipArxiv', 'ARXIV CS.LG');
 const loadImportai = () => loadRssInto('importai', 'https://importai.substack.com/feed', 'importaiBody', 'chipImportai', 'IMPORT AI');
 const loadHfblog = () => loadRssInto('hfblog', 'https://huggingface.co/blog/feed.xml', 'hfblogBody', 'chipHfblog', 'HF BLOG');
 
@@ -4393,7 +4529,7 @@ function schedule(fn, ms, initialDelay = 0) {
 function init() {
   log('SENTINEL-7 BOOT SEQUENCE INITIATED', 'info');
   log('POSTURE: US-CENTRIC TASKING — CONUS PRIORITY', 'info');
-  log('UPLINKS: GDELT · USGS · NASA EONET/DONKI/NEOWS/APOD · SDO · NOAA SWPC/NHC/SPC · GDACS · COINGECKO · MEMPOOL · DEFILLAMA · BLOCKCHAIN.INFO · GOLD-API · FRANKFURTER · POLYMARKET · PREDICTIT · ADSB.LOL · WHERETHEISS.AT · THESPACEDEVS · NWS · FAA · TREASURY · FED · FEDREG · CISA · NVD · WAR.GOV · CENTCOM · DVIDS · GAO · IAEA · WIKIPEDIA · GOVTRACK · FEMA · OPENFDA · GVP · BBC · ALJAZEERA · NPR · DW · FRANCE24 · TASS · MEDUZA · CSIS · WOTR · BREAKINGDEFENSE · DEFENSEONE · TWZ · FAS · 38NORTH · BELLINGCAT · SPACENEWS · BLEEPINGCOMP · THN · SANS · IODA · OONI · OPENPHISH · OPEN-NOTIFY · OPEN-METEO · FEODO · NYFED · SEC-EDGAR · COINPAPRIKA · FAA-NAS · SPACE.COM · ESA · UKMOD · USNI · NAVALNEWS · MWI · C4ISRNET · MILTIMES · TASK&PURPOSE · DEFENSESCOOP · NASASF · CYBERSCOOP · SECURITYWEEK · DARKREADING · OPENROUTER · HUGGINGFACE · ARXIV · HN-ALGOLIA · ARS-AI · VERGE-AI · MITTR-AI · DECODER · TC-AI · OPENAI · DEEPMIND · IMPORTAI · DRONEXL · DRONELIFE · SUAS · UASVISION · DRONEWARS · ORYX · LWJ · CSET · SWJ · THEDEBRIEF · BLACKVAULT · OPENMINDS · UFOCHRON · JPL-FIREBALL · CDREAMS · UTODAY · PHYSAB · ARXIV-TSIG · YAHOO(PROXY)', 'info');
+  log('UPLINKS: GDELT · USGS · NASA EONET/DONKI/NEOWS/APOD · SDO · NOAA SWPC/NHC/SPC · GDACS · COINGECKO · MEMPOOL · DEFILLAMA · BLOCKCHAIN.INFO · GOLD-API · FRANKFURTER · POLYMARKET · PREDICTIT · ADSB.LOL · WHERETHEISS.AT · THESPACEDEVS · NWS · FAA · TREASURY · FED · FEDREG · CISA · NVD · WAR.GOV · CENTCOM · DVIDS · GAO · IAEA · WIKIPEDIA · GOVTRACK · FEMA · OPENFDA · GVP · BBC · ALJAZEERA · NPR · DW · FRANCE24 · TASS · MEDUZA · IWI · WOTR · BREAKINGDEFENSE · DEFENSEONE · TWZ · UCS · 38NORTH · BELLINGCAT · SPACENEWS · BLEEPINGCOMP · THN · SANS · IODA · OONI · OPENPHISH · OPEN-NOTIFY · OPEN-METEO · FEODO · NYFED · SEC-EDGAR · COINPAPRIKA · FAA-NAS · SPACE.COM · ESA · UKMOD · USNI · NAVALNEWS · MWI · C4ISRNET · MILTIMES · TASK&PURPOSE · DEFENSESCOOP · NASASF · CYBERSCOOP · SECURITYWEEK · DARKREADING · OPENROUTER · HUGGINGFACE · ARXIV · HN-ALGOLIA · ARS-AI · VERGE-AI · MITTR-AI · DECODER · TC-AI · OPENAI · DEEPMIND · IMPORTAI · DRONEXL · DRONELIFE · SUAS · UASVISION · DRONEWARS · ORYX · LWJ · CSET · SWJ · THEDEBRIEF · BLACKVAULT · OPENMINDS · UFOCHRON · JPL-FIREBALL · CDREAMS · UTODAY · PHYSAB · ARXIV-TSIG · NSIDC · N0NBH-HF · ARMSCTRL · FOREIGNPOLICY · ATLANTICCNCL · FEDSPEECH · DEFENSENEWS · YAHOO(PROXY)', 'info');
   initGlobe();
   updateClocks(); updateExchanges();
   setInterval(updateClocks, 1000);
@@ -4475,7 +4611,7 @@ function init() {
   schedule(loadSpc, 10 * MIN, 142000);
   schedule(loadSquawk, 60 * 1000, 144000);
   schedule(loadFed, 30 * MIN, 146000);
-  schedule(loadCsis, 60 * MIN, 148000);
+  schedule(loadIwi, 60 * MIN, 148000);
   schedule(loadWot, 60 * MIN, 150000);
   schedule(loadBd, 30 * MIN, 152000);
   schedule(loadBleep, 30 * MIN, 154000);
@@ -4503,7 +4639,7 @@ function init() {
   schedule(loadOoni, 15 * MIN, 198000);
   schedule(loadPhish, 30 * MIN, 200000);
   schedule(loadShort, 60 * MIN, 202000);
-  schedule(loadFas, 60 * MIN, 204000);
+  schedule(loadUcs, 60 * MIN, 204000);
   schedule(loadN38, 60 * MIN, 206000);
   schedule(loadBcat, 60 * MIN, 208000);
   schedule(loadTwz, 30 * MIN, 210000);
@@ -4562,6 +4698,15 @@ function init() {
   schedule(loadUtoday, 30 * MIN, 316000);
   schedule(loadPhysab, 60 * MIN, 318000);
   schedule(loadTechno, 6 * 3600000, 320000);
+  schedule(loadEnergy, 5 * MIN, 322000);
+  schedule(loadMegacap, 5 * MIN, 324000);
+  schedule(loadFedsp, 60 * MIN, 326000);
+  schedule(loadSeaice, 6 * 3600000, 328000);
+  schedule(loadHfband, 30 * MIN, 330000);
+  schedule(loadArms, 60 * MIN, 332000);
+  schedule(loadFp, 60 * MIN, 334000);
+  schedule(loadAcfp, 60 * MIN, 336000);
+  schedule(loadDnews, 30 * MIN, 338000);
 
   const cats = ['conflict', 'politics', 'economy', 'cyber', 'space'];
   cats.forEach((c, i) => setTimeout(() => loadNews(c), 40000 + i * 6000));
