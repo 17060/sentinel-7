@@ -247,6 +247,33 @@
   .ticker .t-space { color: var(--cyan); }
   @keyframes tick { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 
+  /* ---------- AI comms console ---------- */
+  .chat-shell { max-width: 980px; margin: 0 auto; padding: 0 10px 10px; }
+  .chat-controls { display: flex; gap: 8px; padding: 8px 10px; align-items: center; border-bottom: 1px solid #12253a; flex-wrap: wrap; }
+  .chat-controls select, .chat-input-row input {
+    background: #0a1522; color: var(--text-main); border: 1px solid #1d3350;
+    font-family: inherit; font-size: 12px; padding: 5px 8px; letter-spacing: 1px; outline: none;
+  }
+  .chat-controls select:focus, .chat-input-row input:focus { border-color: var(--cyan); }
+  .chat-controls button, .chat-input-row button {
+    background: #0a1522; color: var(--cyan); border: 1px solid var(--cyan); font-family: inherit;
+    font-size: 11px; padding: 5px 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+  }
+  .chat-controls button:hover:not(:disabled), .chat-input-row button:hover:not(:disabled) { background: rgba(0,229,255,0.12); }
+  .chat-controls button:disabled, .chat-input-row button:disabled { opacity: 0.35; cursor: default; }
+  .chat-stat { color: var(--text-muted); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+  .chat-bar-wrap { padding: 6px 10px 0; display: none; }
+  .chat-bar-wrap .bar-track { height: 4px; margin-top: 0; }
+  .chat-bar-label { color: var(--text-muted); font-size: 10px; letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; }
+  .chat-log { height: 320px; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+  .msg { max-width: 82%; padding: 6px 10px; border: 1px solid #1d3350; line-height: 1.55; font-size: 12px; white-space: pre-wrap; word-break: break-word; }
+  .msg .who { display: block; font-size: 10px; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 3px; text-transform: uppercase; }
+  .msg-user { align-self: flex-end; border-color: var(--amber); color: var(--amber); background: rgba(255,176,0,0.06); }
+  .msg-ai { align-self: flex-start; border-color: var(--cyan); color: var(--text-main); background: rgba(0,229,255,0.05); }
+  .msg-sys { align-self: center; border: none; color: var(--text-muted); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+  .chat-input-row { display: flex; gap: 8px; padding: 8px 10px; border-top: 1px solid #12253a; }
+  .chat-input-row input { flex: 1; }
+
   @media (max-width: 1400px) {
     .shell { grid-template-columns: 300px minmax(0,1fr); }
     .col-right { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: start; }
@@ -278,6 +305,7 @@
     <div class="fdot" id="fdSec" title="USGS seismic · NASA EONET natural events"><span class="dot"></span>SEC</div>
     <div class="fdot" id="fdOrb" title="NOAA space weather · NASA DONKI · Launch Library · ISS"><span class="dot"></span>ORB</div>
     <div class="fdot" id="fdGov" title="US Treasury · Federal Register · NWS DC · FAA NAS"><span class="dot"></span>GOV</div>
+    <div class="fdot" id="fdAi" title="OpenRouter · Hugging Face · arXiv · HN · AI news desks"><span class="dot"></span>AI</div>
   </div>
 </div>
 
@@ -418,6 +446,21 @@
     <div class="panel">
       <div class="p-head"><span>Crypto Breadth</span><span class="chip init" id="chipBreadth">INIT</span></div>
       <div class="panel-body"><div class="stat-grid" id="breadthBody"><div class="empty-note">ACQUIRING BREADTH…</div></div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>LLM Tracker · OpenRouter</span><span class="chip init" id="chipOrouter">INIT</span></div>
+      <div class="panel-body" id="orouterBody"><div class="empty-note">SCANNING MODEL REGISTRY…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Trending Models · HF</span><span class="chip init" id="chipHfm">INIT</span></div>
+      <div class="panel-body" id="hfmBody"><div class="empty-note">ACQUIRING HF MODELS…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Trending Datasets · HF</span><span class="chip init" id="chipHfd">INIT</span></div>
+      <div class="panel-body" id="hfdBody"><div class="empty-note">ACQUIRING HF DATASETS…</div></div>
     </div>
 
     <div class="panel">
@@ -592,6 +635,31 @@
     <div class="panel">
       <div class="p-head"><span>Meduza · Russia (Independent)</span><span class="chip init" id="chipMeduza">INIT</span></div>
       <div class="panel-body scroll-list" id="meduzaBody"><div class="empty-note">ACQUIRING MEDUZA…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Ars Technica · AI</span><span class="chip init" id="chipArsai">INIT</span></div>
+      <div class="panel-body scroll-list" id="arsaiBody"><div class="empty-note">ACQUIRING ARS AI…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>The Verge · AI</span><span class="chip init" id="chipVergeai">INIT</span></div>
+      <div class="panel-body scroll-list" id="vergeaiBody"><div class="empty-note">ACQUIRING VERGE AI…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>MIT Tech Review · AI</span><span class="chip init" id="chipMitai">INIT</span></div>
+      <div class="panel-body scroll-list" id="mitaiBody"><div class="empty-note">ACQUIRING MIT TR…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>The Decoder · AI</span><span class="chip init" id="chipDecoder">INIT</span></div>
+      <div class="panel-body scroll-list" id="decoderBody"><div class="empty-note">ACQUIRING THE DECODER…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>TechCrunch · AI</span><span class="chip init" id="chipTcai">INIT</span></div>
+      <div class="panel-body scroll-list" id="tcaiBody"><div class="empty-note">ACQUIRING TECHCRUNCH AI…</div></div>
     </div>
 
     <div class="panel">
@@ -893,6 +961,36 @@
     </div>
 
     <div class="panel">
+      <div class="p-head"><span>OpenAI Wire</span><span class="chip init" id="chipOpenai">INIT</span></div>
+      <div class="panel-body scroll-list" id="openaiBody"><div class="empty-note">ACQUIRING OPENAI…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>DeepMind Wire</span><span class="chip init" id="chipDmind">INIT</span></div>
+      <div class="panel-body scroll-list" id="dmindBody"><div class="empty-note">ACQUIRING DEEPMIND…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>AI Research · arXiv cs.LG</span><span class="chip init" id="chipArxiv">INIT</span></div>
+      <div class="panel-body scroll-list" id="arxivBody"><div class="empty-note">ACQUIRING ARXIV…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>HN · AI Stories</span><span class="chip init" id="chipHnai">INIT</span></div>
+      <div class="panel-body scroll-list" id="hnaiBody"><div class="empty-note">ACQUIRING HN…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Import AI · Policy</span><span class="chip init" id="chipImportai">INIT</span></div>
+      <div class="panel-body scroll-list" id="importaiBody"><div class="empty-note">ACQUIRING IMPORT AI…</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="p-head"><span>Hugging Face Blog</span><span class="chip init" id="chipHfblog">INIT</span></div>
+      <div class="panel-body scroll-list" id="hfblogBody"><div class="empty-note">ACQUIRING HF BLOG…</div></div>
+    </div>
+
+    <div class="panel">
       <div class="p-head"><span>Internet Outages · IODA</span><span class="chip init" id="chipIoda">INIT</span></div>
       <div class="panel-body scroll-list" id="iodaBody"><div class="empty-note">SCANNING BGP / IODA…</div></div>
     </div>
@@ -978,6 +1076,28 @@
     </div>
   </div>
 
+</div>
+
+<div class="chat-shell">
+  <div class="panel">
+    <div class="p-head"><span>AI COMMS · On-Device LLM Uplink</span><span class="chip init" id="chipChat">INIT</span></div>
+    <div class="chat-controls">
+      <select id="chatModel" aria-label="Model selection"></select>
+      <button id="chatLoad">Initialize</button>
+      <span class="chat-stat" id="chatStat">NO MODEL LOADED — RUNS 100% IN THIS BROWSER VIA WEBGPU</span>
+    </div>
+    <div class="chat-bar-wrap" id="chatBarWrap">
+      <div class="bar-track"><div class="bar-fill cyan" id="chatBar" style="width:0%"></div></div>
+      <div class="chat-bar-label" id="chatBarLabel">DOWNLOADING WEIGHTS…</div>
+    </div>
+    <div class="chat-log" id="chatLog">
+      <div class="msg msg-sys">SENTINEL-7 COMMS CONSOLE — SELECT A MODEL AND INITIALIZE.<br>WEIGHTS DOWNLOAD ONCE, THEN RUN LOCALLY. NO PROMPT EVER LEAVES THIS MACHINE.</div>
+    </div>
+    <div class="chat-input-row">
+      <input id="chatInput" placeholder="Transmit message…" disabled autocomplete="off">
+      <button id="chatSend" disabled>Send</button>
+    </div>
+  </div>
 </div>
 
 <div class="ticker-wrap"><div class="ticker" id="ticker"><span>ESTABLISHING UPLINKS TO OPEN DATA FEEDS /// GDELT · USGS · NASA EONET · COINGECKO · FRANKFURTER · YAHOO FINANCE ///</span></div></div>
@@ -1130,6 +1250,8 @@ const S = {
   effr: [], edgar: [], breadth: null, faad: [], spacecom: [], esa: [],
   ukmod: [], usni: [], naval: [], mwi: [], c4isr: [], mtimes: [], task: [],
   dscoop: [], nsf: [], cscoop: [], secweek: [], darkread: [],
+  orouter: [], hfm: [], hfd: [], hnai: [], arsai: [], vergeai: [], mitai: [],
+  decoder: [], tcai: [], openai: [], dmind: [], arxiv: [], importai: [], hfblog: [],
   neo: null, astros: null, ncap: { wx: [], faa: [] },
   space: { kp: null, kpTime: null, flux: null, flares: [], gst: null, alert: null },
   news: { conflict: [], politics: [], economy: [], cyber: [], space: [] },
@@ -1163,6 +1285,7 @@ function setFeed(id, state, note) {
     fdSec: ['chipQuake', 'chipCrisis', 'chipGdacs', 'chipKev', 'chipVolc', 'chipTsu', 'chipCisa', 'chipC2', 'chipTheater', 'chipAqi', 'chipSea', 'chipStorms', 'chipSpc', 'chipNvd', 'chipHacks', 'chipBleep', 'chipThn', 'chipSans', 'chipIoda', 'chipOoni', 'chipPhish', 'chipFema', 'chipSiweekly', 'chipFaad', 'chipCscoop', 'chipSecweek', 'chipDarkread'],
     fdOrb: ['chipSpace', 'chipLaunch', 'chipPrevlaunch', 'chipSpnews', 'chipNeo', 'chipAstros', 'chipApod', 'chipEvents', 'chipSolar', 'chipKpfc', 'chipScycle', 'chipNasanews', 'chipSfn', 'chipSpacecom', 'chipEsa', 'chipNsf'],
     fdGov: ['chipDebt', 'chipTga', 'chipInterest', 'chipFedReg', 'chipNcap', 'chipAuctions', 'chipBills', 'chipVotes', 'chipGao', 'chipFda', 'chipDrugs', 'chipShort', 'chipFed'],
+    fdAi: ['chipOrouter', 'chipHfm', 'chipHfd', 'chipHnai', 'chipArsai', 'chipVergeai', 'chipMitai', 'chipDecoder', 'chipTcai', 'chipOpenai', 'chipDmind', 'chipArxiv', 'chipImportai', 'chipHfblog', 'chipAi', 'chipChat'],
   };
   for (const [dot, chips] of Object.entries(groups)) {
     const el = $(dot); if (!el) continue;
@@ -3889,6 +4012,95 @@ const loadCscoop = () => loadRssInto('cscoop', 'https://cyberscoop.com/feed/', '
 const loadSecweek = () => loadRssInto('secweek', 'https://www.securityweek.com/feed/', 'secweekBody', 'chipSecweek', 'SECURITYWEEK');
 const loadDarkread = () => loadRssInto('darkread', 'https://www.darkreading.com/rss.xml', 'darkreadBody', 'chipDarkread', 'DARK READING');
 
+/* ============================== LLM tracker (OpenRouter) ============================== */
+async function loadOrouter() {
+  try {
+    const j = await fetchJSON('https://openrouter.ai/api/v1/models', 25000);
+    const models = (j.data || []).filter(m => m.created).sort((a, b) => b.created - a.created).slice(0, 7);
+    if (!models.length) throw new Error('empty');
+    S.orouter = models.map(m => ({
+      id: m.id, name: (m.name || m.id).slice(0, 42), created: m.created * 1000,
+      ctx: m.context_length, price: m.pricing ? parseFloat(m.pricing.prompt) * 1e6 : null,
+    }));
+    $('orouterBody').innerHTML = S.orouter.map(m => {
+      const fresh = (Date.now() - m.created) < 14 * 86400000;
+      return `<div class="lrow">
+        <span class="badge ${fresh ? 'green' : 'cyan'}">${fresh ? 'NEW' : 'MODEL'}</span>
+        <div class="grow">${esc(m.name)}<div class="sub">${esc(m.id.split('/')[0].toUpperCase())} · ${timeAgo(m.created)}</div></div>
+        <span class="sub">${m.ctx ? Math.round(m.ctx / 1000) + 'K CTX' : ''}${m.price != null ? ' · $' + m.price.toFixed(2) + '/M' : ''}</span>
+      </div>`;
+    }).join('');
+    setFeed('chipOrouter', 'ok', 'LIVE');
+    log(`OPENROUTER SYNC: newest model ${S.orouter[0].name}`, 'ok');
+  } catch (e) {
+    setFeed('chipOrouter', S.orouter.length ? 'stale' : 'off', S.orouter.length ? 'STALE' : 'OFFLINE');
+    log('OPENROUTER FAULT: ' + e.message, 'err');
+  }
+}
+
+/* ============================== hugging face trending ============================== */
+async function loadHfTrend(kind) {
+  const isModels = kind === 'models';
+  const chipId = isModels ? 'chipHfm' : 'chipHfd';
+  const bodyId = isModels ? 'hfmBody' : 'hfdBody';
+  const key = isModels ? 'hfm' : 'hfd';
+  const label = isModels ? 'HF MODELS' : 'HF DATASETS';
+  try {
+    const j = await fetchJSON(`https://huggingface.co/api/${kind}?sort=likes7d&direction=-1&limit=7`, 15000);
+    if (!Array.isArray(j) || !j.length) throw new Error('empty');
+    S[key] = j.map(m => ({ id: m.id, likes: m.likes || 0, dl: m.downloads || 0 }));
+    $(bodyId).innerHTML = S[key].map((m, i) => `
+      <div class="lrow">
+        <span class="badge ${i === 0 ? 'amber' : 'cyan'}">${i + 1}</span>
+        <div class="grow"><a href="https://huggingface.co/${isModels ? '' : 'datasets/'}${esc(m.id)}" target="_blank" rel="noopener">${esc(m.id)}</a>
+          <div class="sub">${m.dl ? fmtCompact(m.dl) + ' DOWNLOADS' : ''}</div></div>
+        <span class="sub">▲ ${fmtCompact(m.likes)}</span>
+      </div>`).join('');
+    setFeed(chipId, 'ok', 'LIVE');
+    log(`${label} SYNC: ${S[key][0].id} trending #1`, 'ok');
+  } catch (e) {
+    setFeed(chipId, S[key].length ? 'stale' : 'off', S[key].length ? 'STALE' : 'OFFLINE');
+    log(`${label} FAULT: ` + e.message, 'err');
+  }
+}
+const loadHfm = () => loadHfTrend('models');
+const loadHfd = () => loadHfTrend('datasets');
+
+/* ============================== HN AI stories (Algolia) ============================== */
+async function loadHnai() {
+  try {
+    const j = await fetchJSON('https://hn.algolia.com/api/v1/search_by_date?query=AI&tags=story&hitsPerPage=7', 15000);
+    S.hnai = (j.hits || []).map(h => ({
+      title: h.title, url: h.url || `https://news.ycombinator.com/item?id=${h.objectID}`,
+      pts: h.points || 0, ts: Date.parse(h.created_at) || 0,
+    })).filter(h => h.title);
+    if (!S.hnai.length) throw new Error('empty');
+    $('hnaiBody').innerHTML = S.hnai.map(h => `
+      <div class="lrow">
+        <span class="badge amber">${h.pts}▲</span>
+        <div class="grow"><a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.title)}</a>
+          <div class="sub">${h.ts ? timeAgo(h.ts) : ''}</div></div>
+      </div>`).join('');
+    setFeed('chipHnai', 'ok', 'LIVE');
+    log(`HN AI SYNC: ${S.hnai.length} stories`, 'ok');
+  } catch (e) {
+    setFeed('chipHnai', S.hnai.length ? 'stale' : 'off', S.hnai.length ? 'STALE' : 'OFFLINE');
+    log('HN AI FAULT: ' + e.message, 'err');
+  }
+}
+
+/* ============================== AI news desks & labs ============================== */
+const loadArsai = () => loadRssInto('arsai', 'https://arstechnica.com/ai/feed/', 'arsaiBody', 'chipArsai', 'ARS AI');
+const loadVergeai = () => loadRssInto('vergeai', 'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml', 'vergeaiBody', 'chipVergeai', 'VERGE AI');
+const loadMitai = () => loadRssInto('mitai', 'https://www.technologyreview.com/topic/artificial-intelligence/feed/', 'mitaiBody', 'chipMitai', 'MIT TR AI');
+const loadDecoder = () => loadRssInto('decoder', 'https://the-decoder.com/feed/', 'decoderBody', 'chipDecoder', 'THE DECODER');
+const loadTcai = () => loadRssInto('tcai', 'https://techcrunch.com/category/artificial-intelligence/feed/', 'tcaiBody', 'chipTcai', 'TECHCRUNCH AI');
+const loadOpenai = () => loadRssInto('openai', 'https://openai.com/blog/rss.xml', 'openaiBody', 'chipOpenai', 'OPENAI');
+const loadDmind = () => loadRssInto('dmind', 'https://deepmind.google/blog/rss.xml', 'dmindBody', 'chipDmind', 'DEEPMIND');
+const loadArxiv = () => loadRssInto('arxiv', 'http://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=6', 'arxivBody', 'chipArxiv', 'ARXIV CS.LG');
+const loadImportai = () => loadRssInto('importai', 'https://importai.substack.com/feed', 'importaiBody', 'chipImportai', 'IMPORT AI');
+const loadHfblog = () => loadRssInto('hfblog', 'https://huggingface.co/blog/feed.xml', 'hfblogBody', 'chipHfblog', 'HF BLOG');
+
 /* ============================== clocks & exchanges ============================== */
 const EXCHANGES = [
   { n: 'NYSE / NASDAQ', tz: 'America/New_York', o: 9 * 60 + 30, c: 16 * 60 },
@@ -3941,7 +4153,7 @@ function schedule(fn, ms, initialDelay = 0) {
 function init() {
   log('SENTINEL-7 BOOT SEQUENCE INITIATED', 'info');
   log('POSTURE: US-CENTRIC TASKING — CONUS PRIORITY', 'info');
-  log('UPLINKS: GDELT · USGS · NASA EONET/DONKI/NEOWS/APOD · SDO · NOAA SWPC/NHC/SPC · GDACS · COINGECKO · MEMPOOL · DEFILLAMA · BLOCKCHAIN.INFO · GOLD-API · FRANKFURTER · POLYMARKET · PREDICTIT · ADSB.LOL · WHERETHEISS.AT · THESPACEDEVS · NWS · FAA · TREASURY · FED · FEDREG · CISA · NVD · WAR.GOV · CENTCOM · DVIDS · GAO · IAEA · WIKIPEDIA · GOVTRACK · FEMA · OPENFDA · GVP · BBC · ALJAZEERA · NPR · DW · FRANCE24 · TASS · MEDUZA · CSIS · WOTR · BREAKINGDEFENSE · DEFENSEONE · TWZ · FAS · 38NORTH · BELLINGCAT · SPACENEWS · BLEEPINGCOMP · THN · SANS · IODA · OONI · OPENPHISH · OPEN-NOTIFY · OPEN-METEO · FEODO · NYFED · SEC-EDGAR · COINPAPRIKA · FAA-NAS · SPACE.COM · ESA · UKMOD · USNI · NAVALNEWS · MWI · C4ISRNET · MILTIMES · TASK&PURPOSE · DEFENSESCOOP · NASASF · CYBERSCOOP · SECURITYWEEK · DARKREADING · YAHOO(PROXY)', 'info');
+  log('UPLINKS: GDELT · USGS · NASA EONET/DONKI/NEOWS/APOD · SDO · NOAA SWPC/NHC/SPC · GDACS · COINGECKO · MEMPOOL · DEFILLAMA · BLOCKCHAIN.INFO · GOLD-API · FRANKFURTER · POLYMARKET · PREDICTIT · ADSB.LOL · WHERETHEISS.AT · THESPACEDEVS · NWS · FAA · TREASURY · FED · FEDREG · CISA · NVD · WAR.GOV · CENTCOM · DVIDS · GAO · IAEA · WIKIPEDIA · GOVTRACK · FEMA · OPENFDA · GVP · BBC · ALJAZEERA · NPR · DW · FRANCE24 · TASS · MEDUZA · CSIS · WOTR · BREAKINGDEFENSE · DEFENSEONE · TWZ · FAS · 38NORTH · BELLINGCAT · SPACENEWS · BLEEPINGCOMP · THN · SANS · IODA · OONI · OPENPHISH · OPEN-NOTIFY · OPEN-METEO · FEODO · NYFED · SEC-EDGAR · COINPAPRIKA · FAA-NAS · SPACE.COM · ESA · UKMOD · USNI · NAVALNEWS · MWI · C4ISRNET · MILTIMES · TASK&PURPOSE · DEFENSESCOOP · NASASF · CYBERSCOOP · SECURITYWEEK · DARKREADING · OPENROUTER · HUGGINGFACE · ARXIV · HN-ALGOLIA · ARS-AI · VERGE-AI · MITTR-AI · DECODER · TC-AI · OPENAI · DEEPMIND · IMPORTAI · YAHOO(PROXY)', 'info');
   initGlobe();
   updateClocks(); updateExchanges();
   setInterval(updateClocks, 1000);
@@ -4075,6 +4287,20 @@ function init() {
   schedule(loadCscoop, 30 * MIN, 246000);
   schedule(loadSecweek, 30 * MIN, 248000);
   schedule(loadDarkread, 30 * MIN, 250000);
+  schedule(loadOrouter, 30 * MIN, 252000);
+  schedule(loadHfm, 30 * MIN, 254000);
+  schedule(loadHfd, 60 * MIN, 256000);
+  schedule(loadHnai, 15 * MIN, 258000);
+  schedule(loadArsai, 15 * MIN, 260000);
+  schedule(loadVergeai, 15 * MIN, 262000);
+  schedule(loadMitai, 30 * MIN, 264000);
+  schedule(loadDecoder, 30 * MIN, 266000);
+  schedule(loadTcai, 15 * MIN, 268000);
+  schedule(loadOpenai, 60 * MIN, 270000);
+  schedule(loadDmind, 60 * MIN, 272000);
+  schedule(loadArxiv, 60 * MIN, 274000);
+  schedule(loadImportai, 60 * MIN, 276000);
+  schedule(loadHfblog, 60 * MIN, 278000);
 
   const cats = ['conflict', 'politics', 'economy', 'cyber', 'space'];
   cats.forEach((c, i) => setTimeout(() => loadNews(c), 40000 + i * 6000));
@@ -4082,6 +4308,164 @@ function init() {
 }
 
 init();
+})();
+</script>
+
+<script type="module">
+/* ============================== AI COMMS — on-device chat (WebLLM) ============================== */
+import * as webllm from 'https://esm.run/@mlc-ai/web-llm';
+
+const chatEls = {
+  chip: document.getElementById('chipChat'),
+  model: document.getElementById('chatModel'),
+  load: document.getElementById('chatLoad'),
+  stat: document.getElementById('chatStat'),
+  barWrap: document.getElementById('chatBarWrap'),
+  bar: document.getElementById('chatBar'),
+  barLabel: document.getElementById('chatBarLabel'),
+  log: document.getElementById('chatLog'),
+  input: document.getElementById('chatInput'),
+  send: document.getElementById('chatSend'),
+};
+
+const setChip = (cls, txt) => { chatEls.chip.className = 'chip ' + cls; chatEls.chip.textContent = txt; };
+const scrollLog = () => { chatEls.log.scrollTop = chatEls.log.scrollHeight; };
+function addMsg(cls, who, text) {
+  const d = document.createElement('div');
+  d.className = 'msg ' + cls;
+  if (who) {
+    const w = document.createElement('span');
+    w.className = 'who';
+    w.textContent = who;
+    d.appendChild(w);
+  }
+  d.appendChild(document.createTextNode(text));
+  chatEls.log.appendChild(d);
+  scrollLog();
+  return d;
+}
+
+/* Small public instruct models — filtered against the runtime's prebuilt list */
+const WANTED_MODELS = [
+  'SmolLM2-360M-Instruct-q4f16_1-MLC',
+  'Qwen2.5-0.5B-Instruct-q4f16_1-MLC',
+  'Llama-3.2-1B-Instruct-q4f16_1-MLC',
+  'Qwen2.5-1.5B-Instruct-q4f16_1-MLC',
+  'gemma-2-2b-it-q4f16_1-MLC',
+  'Phi-3.5-mini-instruct-q4f16_1-MLC',
+];
+const SYSTEM_PROMPT = 'You are SENTINEL-7, the analyst AI of a geo-financial-political-military situation board. You run entirely on the visitor\'s device. Answer concisely and factually.';
+
+let engine = null;
+let busy = false;
+const history = [];
+
+function populateModels() {
+  const available = (webllm.prebuiltAppConfig.model_list || []).map(m => m.model_id);
+  const usable = WANTED_MODELS.filter(id => available.includes(id));
+  const list = usable.length ? usable : available.filter(id => /Instruct|it-q4/i.test(id)).slice(0, 8);
+  chatEls.model.innerHTML = '';
+  list.forEach(id => {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = id.replace(/-q4f16_1-MLC$/, '').replace(/-/g, ' ');
+    chatEls.model.appendChild(opt);
+  });
+  return list.length > 0;
+}
+
+async function loadModel() {
+  const modelId = chatEls.model.value;
+  if (!modelId || busy) return;
+  busy = true;
+  engine = null;
+  history.length = 0;
+  chatEls.load.disabled = true;
+  chatEls.input.disabled = true;
+  chatEls.send.disabled = true;
+  chatEls.barWrap.style.display = 'block';
+  chatEls.bar.style.width = '0%';
+  setChip('init', 'LOADING');
+  chatEls.stat.textContent = 'LOADING ' + modelId.replace(/-q4f16_1-MLC$/, '').toUpperCase() + '…';
+  addMsg('msg-sys', null, 'INITIALIZING ' + modelId.replace(/-q4f16_1-MLC$/, '').toUpperCase() + ' — FIRST LOAD DOWNLOADS WEIGHTS (CACHED AFTER).');
+  try {
+    engine = await webllm.CreateMLCEngine(modelId, {
+      initProgressCallback: p => {
+        const pct = Math.round((p.progress || 0) * 100);
+        chatEls.bar.style.width = pct + '%';
+        chatEls.barLabel.textContent = (p.text || 'LOADING…').toUpperCase() + ' — ' + pct + '%';
+      },
+    });
+    setChip('ok', 'READY');
+    chatEls.stat.textContent = modelId.replace(/-q4f16_1-MLC$/, '').toUpperCase() + ' · ON-DEVICE · NO UPLINK';
+    chatEls.input.disabled = false;
+    chatEls.send.disabled = false;
+    chatEls.input.focus();
+    addMsg('msg-sys', null, 'UPLINK ESTABLISHED — MODEL RUNNING LOCALLY. TRANSMIT WHEN READY.');
+  } catch (e) {
+    setChip('off', 'FAULT');
+    chatEls.stat.textContent = 'LOAD FAULT: ' + String(e && e.message || e).slice(0, 80).toUpperCase();
+    addMsg('msg-sys', null, 'LOAD FAULT: ' + String(e && e.message || e).slice(0, 140));
+  } finally {
+    chatEls.barWrap.style.display = 'none';
+    chatEls.load.disabled = false;
+    busy = false;
+  }
+}
+
+async function sendChat() {
+  const text = chatEls.input.value.trim();
+  if (!text || !engine || busy) return;
+  busy = true;
+  chatEls.input.value = '';
+  chatEls.input.disabled = true;
+  chatEls.send.disabled = true;
+  setChip('warn', 'THINKING');
+  addMsg('msg-user', 'OPERATOR', text);
+  history.push({ role: 'user', content: text });
+  const bubble = addMsg('msg-ai', 'SENTINEL-7', '…');
+  const bodyNode = bubble.lastChild;
+  try {
+    const msgs = [{ role: 'system', content: SYSTEM_PROMPT }, ...history.slice(-10)];
+    const stream = await engine.chat.completions.create({ messages: msgs, stream: true, temperature: 0.7, max_tokens: 512 });
+    let reply = '';
+    for await (const chunk of stream) {
+      reply += chunk.choices[0] && chunk.choices[0].delta && chunk.choices[0].delta.content || '';
+      bodyNode.textContent = reply || '…';
+      scrollLog();
+    }
+    if (!reply) { bodyNode.textContent = '[EMPTY RESPONSE]'; }
+    history.push({ role: 'assistant', content: reply });
+    setChip('ok', 'READY');
+  } catch (e) {
+    bodyNode.textContent = '[COMMS FAULT: ' + String(e && e.message || e).slice(0, 120) + ']';
+    setChip('off', 'FAULT');
+  } finally {
+    chatEls.input.disabled = false;
+    chatEls.send.disabled = false;
+    chatEls.input.focus();
+    busy = false;
+  }
+}
+
+(function initChat() {
+  if (!navigator.gpu) {
+    setChip('off', 'NO WEBGPU');
+    chatEls.stat.textContent = 'WEBGPU UNAVAILABLE — USE CHROME / EDGE / SAFARI 26+ FOR ON-DEVICE MODELS';
+    chatEls.load.disabled = true;
+    addMsg('msg-sys', null, 'THIS BROWSER LACKS WEBGPU — ON-DEVICE MODELS UNAVAILABLE.');
+    return;
+  }
+  if (!populateModels()) {
+    setChip('off', 'NO MODELS');
+    chatEls.stat.textContent = 'MODEL REGISTRY EMPTY';
+    chatEls.load.disabled = true;
+    return;
+  }
+  setChip('warn', 'STANDBY');
+  chatEls.load.addEventListener('click', loadModel);
+  chatEls.send.addEventListener('click', sendChat);
+  chatEls.input.addEventListener('keydown', e => { if (e.key === 'Enter') sendChat(); });
 })();
 </script>
 </body>
