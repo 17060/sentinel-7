@@ -72,6 +72,13 @@
   .dot.ok { background: var(--ok); box-shadow: 0 0 6px var(--ok); animation: pulse 2s infinite; }
   .dot.stale { background: var(--warn); box-shadow: 0 0 6px var(--warn); }
   .dot.off { background: var(--alert); box-shadow: 0 0 6px var(--alert); }
+  .alert-banner { display: flex; align-items: center; gap: 14px; margin: 0 12px 10px; padding: 8px 14px; border: 1px solid var(--alert); background: linear-gradient(90deg, rgba(255,42,85,.16), rgba(255,106,0,.06)); animation: abPulse 1.6s ease-in-out infinite; font-size: 12px; letter-spacing: .4px; }
+  .alert-banner.hidden { display: none; }
+  @keyframes abPulse { 0%, 100% { box-shadow: 0 0 8px rgba(255,42,85,.18); } 50% { box-shadow: 0 0 26px rgba(255,42,85,.5); } }
+  .ab-tag { color: var(--alert); font-weight: 700; letter-spacing: 2px; white-space: nowrap; }
+  .ab-items { display: flex; gap: 20px; flex-wrap: wrap; }
+  .ab-item { color: var(--text-main); white-space: nowrap; }
+  .ab-item b { color: var(--alert); margin-right: 6px; }
   @keyframes pulse { 50% { opacity: 0.45; } }
 
   /* ---------- ISS marker ---------- */
@@ -307,6 +314,11 @@
     <div class="fdot" id="fdGov" title="US Treasury · Federal Register · NWS DC · FAA NAS"><span class="dot"></span>GOV</div>
     <div class="fdot" id="fdAi" title="OpenRouter · Hugging Face · arXiv · HN · AI news desks"><span class="dot"></span>AI</div>
   </div>
+</div>
+
+<div id="alertBanner" class="alert-banner hidden">
+  <span class="ab-tag">CRITICAL</span>
+  <div class="ab-items" id="alertItems"></div>
 </div>
 
 <div class="shell">
@@ -626,6 +638,7 @@
           <label class="tgl"><input type="checkbox" id="lyrMil" checked> Mil Aircraft</label>
           <label class="tgl"><input type="checkbox" id="lyrIss" checked> ISS</label>
           <label class="tgl"><input type="checkbox" id="lyrLabels" checked> Labels</label>
+          <label class="tgl"><input type="checkbox" id="lyrHeat" checked> Heat</label>
         </div>
         <div class="globe-overlay">
           <div class="lg-item"><span class="swatch" style="background:var(--alert)"></span>CONFLICT / MILITARY <b id="cntConflict">0</b></div>
@@ -1443,7 +1456,7 @@ const S = {
   neo: null, astros: null, ncap: { wx: [], faa: [] },
   space: { kp: null, kpTime: null, flux: null, flares: [], gst: null, alert: null },
   news: { conflict: [], politics: [], economy: [], cyber: [], space: [] },
-  layers: { conflict: true, quake: true, disaster: true, mil: true, iss: true, labels: true },
+  layers: { conflict: true, quake: true, disaster: true, mil: true, iss: true, labels: true, heat: true },
   activeTab: 'conflict',
 };
 const feedState = {};
@@ -1553,7 +1566,14 @@ function initGlobe() {
       el.className = 'iss-marker';
       el.innerHTML = '<div class="iss-dot"></div><div class="iss-tag">ISS</div>';
       return el;
-    });
+    })
+    .heatmapPointLat(d => d.lat)
+    .heatmapPointLng(d => d.lng)
+    .heatmapPointWeight(d => d.w)
+    .heatmapBandwidth(2.4)
+    .heatmapBaseAltitude(0.006)
+    .heatmapColorFn(s => `rgba(255,${Math.round(90 * (1 - s))},36,${(0.18 + 0.6 * s).toFixed(3)})`)
+    .heatmapsTransitionDuration(0);
 
   world.pointOfView({ lat: 38, lng: -97, altitude: 2.15 }); // CONUS center
   const controls = world.controls();
@@ -1573,7 +1593,38 @@ function initGlobe() {
   const fit = () => world.width(el.clientWidth).height(el.clientHeight);
   new ResizeObserver(fit).observe(el);
   fit();
+
+  // day/night terminator: aim the scene's directional light at the subsolar point
+  const scene = world.scene();
+  scene.traverse(o => {
+    if (o.isAmbientLight) o.intensity = Math.min(o.intensity, 0.32);
+    if (o.isDirectionalLight) {
+      if (o.parent) o.parent.remove(o);
+      scene.add(o);
+      o.intensity = Math.max(o.intensity, 1.15);
+      sunLight = o;
+    }
+  });
+  updateTerminator();
 }
+
+/* ============================== solar terminator ============================== */
+let sunLight = null;
+function subsolarPoint() {
+  const now = new Date();
+  const doy = Math.floor((now - Date.UTC(now.getUTCFullYear(), 0, 0)) / 86400000);
+  const lat = -23.44 * Math.cos((2 * Math.PI / 365) * (doy + 10));
+  const utcH = now.getUTCHours() + now.getUTCMinutes() / 60 + now.getUTCSeconds() / 3600;
+  const lng = ((180 - utcH * 15) + 540) % 360 - 180;
+  return { lat, lng };
+}
+function updateTerminator() {
+  if (!world || !sunLight) return;
+  const s = subsolarPoint();
+  const c = world.getCoords(s.lat, s.lng, 3);
+  sunLight.position.set(c.x, c.y, c.z);
+}
+setInterval(updateTerminator, 60000);
 
 function refreshGlobeLayers() {
   if (!world) return;
@@ -1642,6 +1693,10 @@ function refreshGlobeLayers() {
     : [];
   world.labelsData(labels);
 
+  world.heatmapsData(S.layers.heat && S.conflicts.length
+    ? [S.conflicts.map(c => ({ lat: c.lat, lng: c.lng, w: Math.min(1, 0.2 + c.count * 0.06) }))]
+    : []);
+
   $('cntConflict').textContent = S.conflicts.length;
   $('cntQuake').textContent = S.quakes.length;
   $('cntDisaster').textContent = S.eonet.length + S.storms.length + S.gdacs.filter(g => g.lat != null).length;
@@ -1649,17 +1704,41 @@ function refreshGlobeLayers() {
   $('cntCoverage').textContent = S.conflicts.reduce((a, c) => a + c.count, 0).toLocaleString();
 }
 
-['lyrConflict', 'lyrQuake', 'lyrDisaster', 'lyrMil', 'lyrIss', 'lyrLabels'].forEach(id => {
+['lyrConflict', 'lyrQuake', 'lyrDisaster', 'lyrMil', 'lyrIss', 'lyrLabels', 'lyrHeat'].forEach(id => {
   $(id).addEventListener('change', () => {
     S.layers = {
       conflict: $('lyrConflict').checked, quake: $('lyrQuake').checked,
       disaster: $('lyrDisaster').checked, mil: $('lyrMil').checked,
-      iss: $('lyrIss').checked, labels: $('lyrLabels').checked,
+      iss: $('lyrIss').checked, labels: $('lyrLabels').checked, heat: $('lyrHeat').checked,
     };
     refreshGlobeLayers();
     if (world) world.htmlElementsData(S.layers.iss && S.iss ? [S.iss] : []);
   });
 });
+
+/* ============================== critical alert banner ============================== */
+function checkAlerts() {
+  const items = [];
+  const now = Date.now();
+  for (const q of S.quakes) {
+    if (q.mag >= 6.5 && now - q.time < 86400000) items.push(`<span class="ab-item"><b>M${q.mag.toFixed(1)} QUAKE</b>${esc((q.place || '').slice(0, 46))}</span>`);
+  }
+  for (const g of S.gdacs) {
+    if (g.level === 'Red') items.push(`<span class="ab-item"><b>GDACS RED</b>${esc(g.title.replace(/^(Red|Orange|Green)\s+/i, '').slice(0, 46))}</span>`);
+  }
+  for (const s of S.storms) {
+    if (s.kt >= 100) items.push(`<span class="ab-item"><b>MAJOR STORM</b>${esc(((s.cls || '') + ' ' + s.name).trim().slice(0, 30))} · ${Math.round(s.kt)} KT</span>`);
+  }
+  for (const a of S.squawk) {
+    items.push(`<span class="ab-item"><b>7700 SQUAWK</b>${esc(a.cs)}${a.t ? ' · ' + esc(a.t) : ''}</span>`);
+  }
+  const banner = $('alertBanner');
+  if (!items.length) { banner.classList.add('hidden'); return; }
+  banner.classList.remove('hidden');
+  $('alertItems').innerHTML = items.slice(0, 5).join('');
+}
+setInterval(checkAlerts, 30000);
+setTimeout(checkAlerts, 60000);
 
 /* ============================== markets (Yahoo via CORS proxy) ============================== */
 const Y_SYMBOLS = [
