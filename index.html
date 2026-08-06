@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="asa">
 <title>SENTINEL-7 // Global Geo-Financial Situation Board</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -256,6 +257,7 @@
 
   /* ---------- AI comms console ---------- */
   .chat-shell { max-width: 980px; margin: 0 auto; padding: 0 10px 10px; }
+  .site-credit { text-align: center; font-size: 10px; color: var(--text-muted); opacity: .55; padding: 14px 0 18px; letter-spacing: .3px; }
   .chat-controls { display: flex; gap: 8px; padding: 8px 10px; align-items: center; border-bottom: 1px solid #12253a; flex-wrap: wrap; }
   .chat-controls select, .chat-input-row input {
     background: #0a1522; color: var(--text-main); border: 1px solid #1d3350;
@@ -4953,5 +4955,6 @@ async function sendChat() {
   chatEls.input.addEventListener('keydown', e => { if (e.key === 'Enter') sendChat(); });
 })();
 </script>
+<div class="site-credit">Cursor with a teeny tiny wee bit of guidence by some jerk named asa. Beware.</div>
 </body>
 </html>
